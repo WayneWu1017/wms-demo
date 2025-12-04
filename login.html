@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MES Lite - 系統登入</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@7.2.96/css/materialdesignicons.min.css" rel="stylesheet">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap');
+
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+    }
+
+    /* 進場動畫 */
+    .fade-in {
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            dark: {
+              950: '#0f172a',
+              900: '#1a222c',
+              800: '#24303f',
+              600: '#3d4d63',
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-dark-950 h-screen flex items-center justify-center relative overflow-hidden">
+
+  <div class="absolute inset-0 z-0">
+    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2670&auto=format&fit=crop"
+      class="w-full h-full object-cover opacity-20 filter blur-sm">
+    <div class="absolute inset-0 bg-gradient-to-b from-dark-950/80 via-dark-950/90 to-dark-950"></div>
+  </div>
+
+  <div
+    class="relative z-10 w-full max-w-md p-8 bg-dark-800/80 backdrop-blur-md rounded-2xl border border-dark-600 shadow-2xl fade-in mx-4">
+
+    <div class="text-center mb-10">
+      <div
+        class="inline-flex items-center justify-center w-16 h-16 rounded-xl bg-gradient-to-br from-blue-600 to-teal-400 mb-4 shadow-lg shadow-blue-500/20">
+        <span class="mdi mdi-factory text-4xl text-white"></span>
+      </div>
+      <h1 class="text-2xl font-bold text-white tracking-wide">MES Lite</h1>
+      <p class="text-gray-400 text-sm mt-2">智慧物料與生產管理系統</p>
+    </div>
+
+    <form onsubmit="handleLogin(event)" class="space-y-6">
+
+      <div id="errorMsg"
+        class="hidden transform transition-all duration-300 bg-red-500/10 border border-red-500/20 rounded-lg p-3 flex items-center gap-3">
+        <span class="mdi mdi-alert-circle text-red-500 text-xl"></span>
+        <div class="text-sm text-red-400">帳號或密碼錯誤 (admin / 123456)</div>
+      </div>
+
+      <div class="space-y-1">
+        <label class="text-xs font-bold text-gray-500 uppercase tracking-wider ml-1">帳號 Account</label>
+        <div class="relative group">
+          <span
+            class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-blue-400 transition">
+            <span class="mdi mdi-account-outline text-xl"></span>
+          </span>
+          <!-- <input type="text" id="username"
+            class="w-full bg-dark-900/50 border border-dark-600 text-white rounded-xl py-3.5 pl-12 pr-4 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition placeholder-gray-600"
+            placeholder="請輸入管理員帳號" value="admin"> -->
+          <input type="text" id="username"
+            class="w-full bg-dark-900/50 border border-dark-600 text-white rounded-xl py-3.5 pl-12 pr-4 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition placeholder-gray-600"
+            placeholder="請輸入管理員帳號" value="admin">
+        </div>
+      </div>
+
+      <div class="space-y-1">
+        <label class="text-xs font-bold text-gray-500 uppercase tracking-wider ml-1">密碼 Password</label>
+        <div class="relative group">
+          <span
+            class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-blue-400 transition">
+            <span class="mdi mdi-lock-outline text-xl"></span>
+          </span>
+          <!-- <input type="password" id="password"
+            class="w-full bg-dark-900/50 border border-dark-600 text-white rounded-xl py-3.5 pl-12 pr-4 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition placeholder-gray-600"
+            placeholder="請輸入密碼" value="123456"> -->
+          <input type="password" id="password"
+            class="w-full bg-dark-900/50 border border-dark-600 text-white rounded-xl py-3.5 pl-12 pr-4 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition placeholder-gray-600"
+            placeholder="請輸入密碼" value="">
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between text-sm pt-2">
+        <label class="flex items-center text-gray-400 hover:text-gray-300 cursor-pointer">
+          <input type="checkbox"
+            class="w-4 h-4 rounded bg-dark-900 border-dark-600 text-blue-500 focus:ring-offset-dark-800 mr-2">
+          記住帳號
+        </label>
+        <a href="#" class="text-blue-500 hover:text-blue-400 transition">忘記密碼？</a>
+      </div>
+
+      <button type="submit"
+        class="w-full bg-gradient-to-r from-blue-600 to-teal-500 hover:from-blue-500 hover:to-teal-400 text-white font-bold py-4 rounded-xl shadow-lg shadow-blue-500/25 transform transition active:scale-[0.98] mt-4 flex items-center justify-center gap-2 group">
+        登入系統
+        <span class="mdi mdi-arrow-right group-hover:translate-x-1 transition"></span>
+      </button>
+
+    </form>
+
+    <div class="mt-8 text-center border-t border-dark-600 pt-6">
+      <p class="text-xs text-gray-600">© 2025 MES Lite System. Version 1.0.2</p>
+    </div>
+  </div>
+
+  <script>
+    function handleLogin(e) {
+      e.preventDefault(); // 防止表單直接送出刷新
+
+      const userInput = document.getElementById('username');
+      const passInput = document.getElementById('password');
+      const errorMsg = document.getElementById('errorMsg');
+      const user = userInput.value;
+      const pass = passInput.value;
+
+      // 驗證邏輯
+      if (user === 'admin' && pass === '123456') {
+        // 1. 隱藏錯誤訊息
+        errorMsg.classList.add('hidden');
+
+        // 2. 按鈕變更狀態 (視覺回饋)
+        const btn = document.querySelector('button[type="submit"]');
+        btn.innerHTML = '<span class="mdi mdi-loading mdi-spin"></span> 登入中...';
+        btn.classList.add('opacity-75', 'cursor-not-allowed');
+
+        // 3. 模擬短暫延遲後跳轉 (讓使用者感覺系統在處理)
+        setTimeout(() => {
+          // 重要：這裡會跳轉到你存好的 main.html 檔案
+          window.location.href = 'main.html';
+        }, 800);
+
+      } else {
+        // 驗證失敗
+        // 顯示錯誤訊息
+        errorMsg.classList.remove('hidden');
+
+        // 清空密碼欄位
+        passInput.value = '';
+        passInput.focus();
+
+        // 簡單的搖晃動畫提示錯誤
+        const card = document.querySelector('.bg-dark-800\\/80');
+        card.animate([
+          { transform: 'translateX(0)' },
+          { transform: 'translateX(-5px)' },
+          { transform: 'translateX(5px)' },
+          { transform: 'translateX(0)' }
+        ], { duration: 300 });
+      }
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap');
+
+body {
+  font-family: 'Noto Sans TC', sans-serif;
+}
+
+/* 自定義捲軸 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #475569;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* 側邊欄收合過渡動畫 */
+.sidebar-transition {
+  transition: width 0.3s ease-in-out;
+}
+
+.text-transition {
+  transition: opacity 0.2s ease-in-out;
+}
+
+/* 圖表高度動畫 */
+.bar-animate {
+  transition: height 1s ease-out;
+}
+
+    
+/* 自定義橫向捲軸樣式 */
+.custom-scrollbar::-webkit-scrollbar {
+  height: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #1a222c;
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #3d4d63;
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #4b5563;
+}
+
+.sidebar-transition {
+  transition: width 0.3s ease-in-out;
+}
